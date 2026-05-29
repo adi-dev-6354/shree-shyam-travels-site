@@ -94,10 +94,22 @@
   @keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes float-slow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
   @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 0 0 oklch(0.7 0.18 47 / 0.45); } 70% { box-shadow: 0 0 0 18px oklch(0.7 0.18 47 / 0); } }
+  @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes gradient-pan { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
   .animate-fade-up { animation: fade-up 0.8s var(--transition-smooth) both; }
   .animate-float { animation: float-slow 8s ease-in-out infinite; }
   .animate-pulse-glow { animation: pulse-glow 2.4s ease-out infinite; }
+  .animate-marquee { animation: marquee 38s linear infinite; }
+  .animate-gradient-pan { background-size: 200% 200%; animation: gradient-pan 12s ease infinite; }
 
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth); }
-  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  /* Reveal: visible by default (no-JS safe). When JS marks it pending,
+     it fades out, then .in-view fades it back in for a smooth scroll cue. */
+  .reveal { opacity: 1; transform: translateY(0); }
+  .reveal.is-pending { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth); will-change: opacity, transform; }
+  .reveal.is-pending.in-view { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal.is-pending { opacity: 1; transform: none; transition: none; }
+    .animate-float, .animate-pulse-glow, .animate-marquee, .animate-gradient-pan { animation: none !important; }
+  }
 }

@@ -541,8 +541,10 @@ function Contact() {
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="Full name" name="name" placeholder="Your name" required />
             <Field label="Phone number" name="phone" placeholder="10-digit mobile" required type="tel" />
-            <Field label="Travel route" name="route" placeholder="e.g. Vapi to Mumbai" required />
+            <Field label="Travel From" name="route" placeholder="Pickup City" required />
+            <Field label="Travel To" name="route" placeholder="Destination City" required />
             <Field label="Travel date" name="date" type="date" required />
+            <Field label="Number of passengers" name="passengers" type="number" placeholder="1, 2, 3..." required />
           </div>
           <div className="mt-5">
             <label className="mb-1.5 block text-sm font-semibold text-foreground">Message</label>

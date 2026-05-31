@@ -8,6 +8,7 @@ const links = [
   { href: "#fleet", label: "Fleet" },
   { href: "#why", label: "Why Us" },
   { href: "#contact", label: "Contact" },
+  { href: "#booking", label: "Booking" },
 ];
 
 export function Navbar() {
